@@ -1,0 +1,49 @@
+import java.util.*;
+
+public class E {
+
+    public static int n, q;
+    public static ArrayList<Integer>[] box;
+    public static HashMap<Integer, TreeSet<Integer>> mp;
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        n = input.nextInt();
+        q = input.nextInt();
+        box = new ArrayList[200005];
+        mp = new HashMap<Integer, TreeSet<Integer>>();
+
+        for (int i = 1; i <= n; i++) {
+            box[i] = new ArrayList<Integer>();
+        }
+
+        while (q-- > 0) {
+            int op = input.nextInt();
+
+            if (op == 1) {
+                int i = input.nextInt();
+                int j = input.nextInt();
+                box[j].add(i);
+                if (!mp.containsKey(i)) {
+                    mp.put(i, new TreeSet<Integer>());
+                }
+                mp.get(i).add(j);
+            } else if (op == 2) {
+                int i = input.nextInt();
+                Collections.sort(box[i]);
+                for (int x : box[i]) {
+                    System.out.print(x + " ");
+                }
+                System.out.println();
+            } else {
+                int i = input.nextInt();
+                if (mp.containsKey(i)) {
+                    for (int j : mp.get(i)) {
+                        System.out.print(j + " ");
+                    }
+                }
+                System.out.println();
+            }}
+    }
+
+}
